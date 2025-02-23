@@ -79,6 +79,15 @@ Lista* ordenarLista(Lista* l){
         return insertarOrdenado(cabeza(l), ordenarLista(resto(l)));
 }
 
+Lista* eliminarElemento(Elem e, Lista* l){
+    if(esVacia(l))
+        return l;
+    else if(e == cabeza(l))
+        return resto(l);
+    else
+        return cons(cabeza(l), eliminarElemento(e, resto(l)));
+}
+
 int main(){
     // Crear dos listas
     Lista* lista1 = vacia();
@@ -111,9 +120,13 @@ int main(){
     Lista* listaInvertida = invertirOrden(listaOrdenada);
     printf("\n Lista Invertida: ");
     impLista(listaInvertida);
-    
+
+    // Eliminar elemento
+    Lista* listaElemento = eliminarElemento(1, listaInvertida);
+    printf("\n Lista sin elemento: ");
+    impLista(listaElemento);
     // Liberar memoria
     liberarLista(listaInvertida);
-    
+    puts("");
     return 0;
 }
